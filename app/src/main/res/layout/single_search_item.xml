@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="itemsresult"
+            type="com.jsv.myapplication.service.ItemsResult" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/owner_profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="62dp"
+            android:contentDescription="@string/image_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/round_profile"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toStartOf="@+id/language"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ownerImageView = "@{itemsresult.owner.avatar_url}"
+            app:riv_oval="true"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="6dp"
+            android:text="@{itemsresult.capitalizeFirstName}"
+            android:textColor="@color/colorBackgroundItems"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/owner_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/name_str" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="229dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:text="@{itemsresult.description}"
+            app:layout_constraintStart_toEndOf="@+id/owner_profile"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="@string/description" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="2dp"
+            android:text="@string/language"
+            app:layout_constraintEnd_toStartOf="@+id/language"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/owner_profile"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <TextView
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="198dp"
+            android:background="@color/colorPrimary"
+            android:padding="3dp"
+            android:text="@{itemsresult.language}"
+            android:textAlignment="center"
+            android:textColor="@color/white_color"
+            app:layout_constraintEnd_toStartOf="@+id/favorite"
+            app:layout_constraintStart_toEndOf="@+id/owner_profile"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            tools:ignore="MissingConstraints"
+            tools:text="@string/language_value" />
+
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="50dp"
+            app:isFavorite ="@{itemsresult.isFavorite}"
+            android:contentDescription="@string/image_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/description"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_favorite_empty" />
+
+        <View
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/language" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

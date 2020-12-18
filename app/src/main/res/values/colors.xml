@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff6262</color>
+    <color name="colorPrimaryDark">#ED5152</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorBackgroundItems">#000000</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="search_color">#F2F2F2</color>
+    <color name="favorites_empty"> #979697</color>
+    <color name="fog_gray">#E5E5E5</color>
+
+</resources>
+
