@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jsv.myapplication.viewModel.ListSearchViewModel" />
+            type="com.jsv.myapplication.viewModel.search.ListSearchViewModel" />
     </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,11 +19,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 app:iconifiedByDefault="false"
-                app:queryTextListener="@{viewModel.onQueryTextListener}"
-                app:query="@{viewModel.query}"
                 android:background="@color/fog_gray"
                 app:closeIcon="@android:color/transparent"
                 android:inputType="textCapSentences"
+                android:imeOptions="flagNoExtractUi"
                 tools:ignore="MissingConstraints">
                 <requestFocus />
             </androidx.appcompat.widget.SearchView>
@@ -35,14 +34,14 @@
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginBottom="1dp"
-                android:textAlignment="center"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_search"
                 app:listData="@{viewModel.search}"
-                tools:listitem="@layout/single_search_item" />
+                tools:listitem="@layout/single_search_item"
+                />
 
             <TextView
                 android:visibility="gone"
@@ -65,7 +64,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
             <ImageView
                 android:id="@+id/status_image"
@@ -76,6 +76,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:contentDescription="@string/img_description"
+                app:gitHubApiStatus ="@{viewModel.loading}"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

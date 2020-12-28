@@ -4,8 +4,12 @@ package com.jsv.myapplication.viewModel
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.jsv.myapplication.database.DatabaseSearch
 import com.jsv.myapplication.database.GitHubDatabaseDao
 import com.jsv.myapplication.repository.SearchRepository
+import com.jsv.myapplication.service.ItemsResult
+import io.reactivex.Flowable
+
 
 class ListSearchFavoritesViewModel(
     val database: GitHubDatabaseDao,
@@ -14,12 +18,19 @@ class ListSearchFavoritesViewModel(
 
 
     //Favorite functions
-
     private val searchRepository = SearchRepository(database)
 
-    val listFavorites = searchRepository.listFavorites
+    private val _listFavorites = MutableLiveData<List<ItemsResult>>()
+    val listFavorites : LiveData<List<ItemsResult>>
+    get() = _listFavorites
 
-    override fun onCleared() {
-        super.onCleared()
+
+
+    fun getListFavorites() : Flowable<List<DatabaseSearch>>{
+         return searchRepository.getListFavorites()
+    }
+
+    fun updateListFavorites(favorites: List<ItemsResult>) {
+        _listFavorites.value = favorites
     }
 }

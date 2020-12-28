@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
+//apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 30
@@ -34,6 +35,11 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+//    configurations {
+//        cleanedAnnotations
+//        compile.exclude group: 'org.jetbrains' , module:'annotations'
+//    }
 
     buildFeatures {
         dataBinding true
@@ -68,12 +74,22 @@ dependencies {
     implementation "androidx.core:core-ktx:$version_core"
 
     // Navigation
-    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
-    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-runtime:$version_navigation"
+    implementation "androidx.navigation:navigation-runtime-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-fragment:$version_navigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-testing:$version_navigation"
+    implementation "androidx.navigation:navigation-ui:$version_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
+
+
 
     // Coroutines for getting off the UI thread
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
 
     // Retrofit for networking
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
@@ -84,7 +100,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$version_retrofit"
 
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$version_rxandroid"
+
 
     // Moshi for parsing the JSON format
     implementation "com.squareup.moshi:moshi:$version_moshi"
@@ -109,15 +126,20 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
 
-
 //    // Room database
     implementation "androidx.room:room-runtime:$version_room"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "android.arch.persistence.room:rxjava2:$version_room"
+    implementation 'androidx.room:room-rxjava2:2.2.2'
+
     kapt "androidx.room:room-compiler:$version_room"
-//
-//
-//
-//
+
+//    implementation "androidx.room:room-runtime:$version_room"
+//    implementation "androidx.room:room-compiler:$version_room"
+////    kapt "androidx.room:room-compiler:$version_room"
+//    implementation "androidx.room:room-rxjava2:$version_room"
+//    implementation "androidx.room:room-testing:$version_room"
+
 //    // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$version_room"
 

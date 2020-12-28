@@ -44,27 +44,37 @@ class SearchAdapter (private val onclickListener: OnClickListener): ListAdapter<
 
     override fun onBindViewHolder(holder: SearchModelViewHolder, position: Int) {
         val itemsResult = getItem(position)
+//        holder.itemView.setOnClickListener {
+//            println("onBindViewHolder setOnClickListener")
+//
+//            //onclickListener.saveAsFavorite(it)
+//        }
+
         compositeDisposable.add(Maybe.create<ItemsResult> { emitter ->
             emitter.setCancellable {
                 holder.itemView.favorite.setOnClickListener(null)
             }
-
             holder.itemView.favorite.setOnClickListener {
+                println("onBindViewHolder setOnClickListener")
                 emitter.onSuccess(itemsResult)
             }
         }.toFlowable().onBackpressureLatest()
             .observeOn(Schedulers.io())
             .map {
-                 it.isFavorite = !it.isFavorite
-                 onclickListener.saveAsFavorite(it)
-                 itemsResult.isFavorite
+                it.isFavorite = !it.isFavorite
+                println("onBindViewHolder answer setOnClickListener ${it.isFavorite} ")
+
+                onclickListener.saveAsFavorite(it)
+                itemsResult.isFavorite
             }
             .subscribeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 isFavorite(holder.itemView.favorite,it)
             }
         )
+
         holder.bind(itemsResult)
+
     }
 
     //Still don't know if I have to put it.

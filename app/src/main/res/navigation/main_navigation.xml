@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listSearch"
-        android:name="com.jsv.myapplication.view.ListSearch"
+        android:name="com.jsv.myapplication.view.search.ListSearch"
         android:label="fragment_list_search"
         tools:layout="@layout/fragment_list_search" />
     <fragment
